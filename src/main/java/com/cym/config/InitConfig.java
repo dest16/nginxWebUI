@@ -131,6 +131,9 @@ public class InitConfig {
 				if (FileUtil.exist("/usr/lib/nginx/modules/ngx_stream_module.so")) {
 					Basic basic = new Basic("load_module", "/usr/lib/nginx/modules/ngx_stream_module.so", -10l);
 					sqlHelper.insert(basic);
+				} else if (FileUtil.exist("/usr/lib64/nginx/modules/ngx_stream_module.so")) {
+					Basic basic = new Basic("load_module", "/usr/lib64/nginx/modules/ngx_stream_module.so", -10l);
+					sqlHelper.insert(basic);
 				} else {
 					logger.info(m.get("commonStr.ngxStream"));
 					List<String> list = RuntimeUtil.execForLines(CharsetUtil.systemCharset(), "find / -name ngx_stream_module.so");
